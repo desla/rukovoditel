@@ -187,8 +187,10 @@ class items
 	$item_number = '';
 	if ($entity_info['id'] == 21) // Проекты.
 	{
-		$item_number = $item_info['field_196']; // Номер проекта.
-		$item_number = $item_number . ' - ';
+		if ($item_info['field_196'] != '') {
+			$item_number = $item_info['field_196']; // Номер проекта.
+			$item_number = $item_number . ' - ';
+		}		
 	}
         
         //$breadcrumb[] = array('url'=>url_for('items/info','path=' . $path . $entity_id . '-' . $item_id),'title'=>$item_name);
