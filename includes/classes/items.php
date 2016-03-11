@@ -183,8 +183,16 @@ class items
       {
         $item_info = db_find('app_entity_' . $entity_id,$item_id);
         $item_name = ($heading_field_id>0 ? self::get_heading_field_value($heading_field_id,$item_info) : $item_info['id']);
+	
+	$item_number = '';
+	if ($entity_info['id'] == 21) // Проекты.
+	{
+		$item_number = $item_info['field_196']; // Номер проекта.
+		$item_number = $item_number . ' - ';
+	}
         
-        $breadcrumb[] = array('url'=>url_for('items/info','path=' . $path . $entity_id . '-' . $item_id),'title'=>$item_name);
+        //$breadcrumb[] = array('url'=>url_for('items/info','path=' . $path . $entity_id . '-' . $item_id),'title'=>$item_name);
+	$breadcrumb[] = array('url'=>url_for('items/info','path=' . $path . $entity_id . '-' . $item_id),'title'=>$item_number . ' ' . $item_name);
       }
           
       $path .= $entity_id . ($item_id>0 ? '-' . $item_id . '/':'');
